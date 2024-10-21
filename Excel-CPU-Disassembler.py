@@ -208,7 +208,8 @@ def output():
                 fout.write(f'@{Address(second).to_hex()}\t\t')
             if reg1_ != 0 or reg2_ != 0: unused_bits = 2
         elif opcode_ in [4, 6]:
-            fout.write(f'\t{ins_set[opcode_]}\tR{reg1_}\t{f"var_{Address(second).tab_pad()}" if second<entry else f"@{Address(second).to_hex()}\t"}')
+            tmp_operand_2 = f"var_{Address(second).tab_pad()}" if second<entry else f"@{Address(second).to_hex()}\t"
+            fout.write(f'\t{ins_set[opcode_]}\tR{reg1_}\t{tmp_operand_2}')
             if reg2_ != 0: unused_bits = 1
         elif opcode_ == 5:
             fout.write(f'\t{ins_set[opcode_]}\tR{reg1_}\t${second:04X}\t')
